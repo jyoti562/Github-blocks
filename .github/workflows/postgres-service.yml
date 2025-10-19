@@ -23,8 +23,8 @@ jobs:
       - name: Wait for PostgreSQL service
         run: |
           echo "⏳ Waiting for PostgreSQL to start..."
-          until nc -z localhost 5432; do
-            echo "Waiting..."
+          while ! nc -z localhost 5432; do
+            echo "PostgreSQL is unavailable - waiting..."
             sleep 1
           done
           echo "✅ PostgreSQL is ready!"
